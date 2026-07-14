@@ -1,15 +1,26 @@
-import { useState } from 'react'
+import { useState , useRef } from 'react'
 import './App.css'
 import TaskList from './components/TaskList'
 import TaskForm from './components/TaskForm'
 import SearchBar from './components/SearchBar'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
 function App() {
  const [tasks, setTasks] = useState([])
  const[searchQuery , setSearchQuery] = useState("")
  const[editingTask, setEditingTask]= useState(null);
+ const form =useRef(null);
+ const notify=(massage) => toast.success(massage);
+
+
   
   function addTask(task) {
+    console.log("Adding task:", task);
    
     const newTask = {
     id: Date.now(),
@@ -21,23 +32,27 @@ function App() {
     completed:false,
     };
   
-    setTasks([...tasks, newTask]);
+      setTasks((prev) => [...prev, newTask]);
   }
 
   function deleteTask(id){
     setTasks(tasks.filter((task)=>task.id !== id)); 
+    notify("Task is deleted");
 
 
   }
 
   function editTask(task){
     setEditingTask(task);
+    form.current?.scrollIntoView({ behavior: "smooth" });
 
   } 
 
   function updateTask(updatedTask){
     setTasks(tasks.map((task)=> task.id == updatedTask.id ? updatedTask : task));
     setEditingTask(null);
+   
+    
   }
 
   function complete(id) {
@@ -46,8 +61,10 @@ function App() {
       task.id === id
         ? { ...task, completed: !task.completed }
         : task
+       
     )
   );
+   notify("Task is completed");
 }
   
   return (
@@ -59,9 +76,10 @@ function App() {
           To-Do List
         </h1>
   
-    <TaskForm onAddTask={addTask}  editingTask={editingTask} onUpdateTask={updateTask}/>
+    <TaskForm onAddTask={addTask}  editingTask={editingTask} onUpdateTask={updateTask} ref={form} notify={notify} />
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-    <TaskList  tasks={tasks} searchQuery={searchQuery} onDelete={deleteTask} onEdit={editTask} onComplete={complete}/>
+    <TaskList  tasks={tasks} setTasks={setTasks} searchQuery={searchQuery} onDelete={deleteTask} onEdit={editTask} onComplete={complete} />
+     <ToastContainer />
     </div>
     </div>
   );

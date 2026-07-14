@@ -1,7 +1,7 @@
 import React , {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 
-function TaskForm({onAddTask , editingTask, onUpdateTask}) {
+function TaskForm({onAddTask , editingTask, onUpdateTask ,ref , notify }) {
 
     const { register, handleSubmit,formState: {errors},reset,setValue} = useForm();
 
@@ -26,16 +26,21 @@ function TaskForm({onAddTask , editingTask, onUpdateTask}) {
 
       if (editingTask) {
           onUpdateTask({...data, id: editingTask.id,});
+          notify("Task is updated");
       }
       else{
         onAddTask(data);
+        notify("Task is added ");
       }
         reset();
     }
 
+   
+
     return (
        <>
-        <div className="bg-white rounded-xl shadow-md p-6 mb-8">
+      
+        <div  ref={ref} className="bg-white rounded-xl shadow-md p-6 mb-8">
   <h2 className="text-2xl font-bold mb-6">Add New Task</h2>
 
   <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -53,6 +58,22 @@ function TaskForm({onAddTask , editingTask, onUpdateTask}) {
 
          {errors.title && (<p className="text-red-500 text-sm mt-1">
           {errors.title.message}
+        </p>
+      )}
+    </div>
+         <div>
+            <label className="block mb-2 font-medium">Job</label>
+
+        <input type="text"
+        placeholder="Enter task title"
+        className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        {...register("job",{
+          required: "job is requeird ",
+          maxLength: {value:50, message:"job can not excssed 50 char"}
+        })}/>
+
+         {errors.job && (<p className="text-red-500 text-sm mt-1">
+          {errors.job.message}
         </p>
       )}
     </div>
@@ -130,8 +151,12 @@ function TaskForm({onAddTask , editingTask, onUpdateTask}) {
 
     <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
       {editingTask ? "update Task" :"Add Task"}
+      
     </button>
+    
 
+
+       
         </form>
         </div>
         </>
