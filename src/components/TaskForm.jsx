@@ -1,5 +1,6 @@
 import React , {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
+import TextInput from './TextInput';
 
 function TaskForm({onAddTask , editingTask, onUpdateTask ,ref , notify }) {
 
@@ -45,56 +46,49 @@ function TaskForm({onAddTask , editingTask, onUpdateTask ,ref , notify }) {
 
   <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
 
-        <div>
-            <label className="block mb-2 font-medium">Title</label>
+        <TextInput
+          label="Title"
+          name="title"
+          placeholder="Enter task title"
+          register={register}
+          validation={{
+            required: "Title is required",
+            maxLength: { value: 100, message: "Title cannot exceed 100 characters" },
+          }}
+           error={errors.title}
+        />
+       
+         
+          <TextInput
+          label="job"
+          name="job"
+          placeholder="enter job"
+          register={register}
+          validation={{
+            required: "job is required",
+            maxLength:{
+              value:50,
+              message:"job cannnot exceed 50 char"
+            },
+          }}
+          error={errors.job}
 
-        <input type="text"
-        placeholder="Enter task title"
-        className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        {...register("title",{
-          required: "title is requeird ",
-          maxLength: {value:100, message:"title can not excssed 100 char"}
-        })}/>
-
-         {errors.title && (<p className="text-red-500 text-sm mt-1">
-          {errors.title.message}
-        </p>
-      )}
-    </div>
-         <div>
-            <label className="block mb-2 font-medium">Job</label>
-
-        <input type="text"
-        placeholder="Enter task title"
-        className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        {...register("job",{
-          required: "job is requeird ",
-          maxLength: {value:50, message:"job can not excssed 50 char"}
-        })}/>
-
-         {errors.job && (<p className="text-red-500 text-sm mt-1">
-          {errors.job.message}
-        </p>
-      )}
-    </div>
-  
-    <div>
-     <label className="block mb-2 font-medium">Description</label>
-            
-        <textarea 
-        rows="4"
-        placeholder="Enter task description..."
-        className="w-full border rounded-lg px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500" 
-        {...register("description",{
-        maxLength:{value:500,message:"description cannot exceed 500 characters " }
-
-        })}/>
-         {errors.description && (
-        <p className="text-red-500 text-sm mt-1">
-          {errors.description.message}
-        </p>
-      )}
-    </div>
+          />
+ 
+          <TextInput 
+          label="description"
+          name="description"
+          placeholder="write a clear description"
+          register={register}
+          validation={{
+          maxLength:{
+            value:500,
+            message:"description cano=not exceed 500 char",
+          },
+        }}
+          error={errors.description}
+          />
+    
 
      
 
