@@ -11,7 +11,7 @@ function App() {
   return (
       <>
     
-      <nav className="bg-blue-600 dark:bg-slate-900 border-b border-transparent dark:border-slate-800/80 shadow-md transition-colors duration-300">
+      <nav className="bg-blue-800 dark:bg-slate-900 border-b border-transparent dark:border-slate-800/80 shadow-md transition-colors duration-300">
   <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
     <h1 className="text-2xl font-bold text-white">
       <Link to="/" className="hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200">React App</Link>

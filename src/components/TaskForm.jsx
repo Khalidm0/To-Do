@@ -59,23 +59,6 @@ function TaskForm({onAddTask , editingTask, onUpdateTask ,ref , notify }) {
           }}
            error={errors.title}
         />
-       
-         
-          <TextInput
-          label="job"
-          name="job"
-          placeholder="enter job"
-          register={register}
-          validation={{
-            required: "job is required",
-            maxLength:{
-              value:50,
-              message:"job cannnot exceed 50 char"
-            },
-          }}
-          error={errors.job}
-
-          />
  
           <TextInput 
           label="description"
