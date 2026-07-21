@@ -1,4 +1,5 @@
 import { Reorder } from "framer-motion";
+import {Link} from 'react-router-dom'
 
 function TaskItem({ task, onDelete, onEdit, onComplete }) {
   const {
@@ -11,6 +12,7 @@ function TaskItem({ task, onDelete, onEdit, onComplete }) {
   } = task;
 
   return (
+    <>
     <Reorder.Item
     value={task}
     layout
@@ -55,29 +57,29 @@ function TaskItem({ task, onDelete, onEdit, onComplete }) {
         damping: 40,
         mass: 0.45,
       }}
-    className={`border rounded-xl p-5 shadow-sm  ${
+    className={`border rounded-xl p-5 shadow-sm transition-colors duration-200 ${
       completed
-        ? "bg-green-50 border-green-300 opacity-80"
-        : "bg-white hover:shadow-lg"
+        ? "bg-green-50/80 border-green-300 dark:bg-emerald-950/40 dark:border-emerald-800/60 opacity-80"
+        : "bg-white border-slate-200 dark:bg-slate-900 dark:border-slate-800 hover:shadow-lg dark:hover:border-slate-700"
     }`}
     >
       {/* Header */}
       <div className="flex justify-between items-center">
         <h2
           className={`text-xl font-bold ${
-            completed ? "line-through text-gray-500" : ""
+            completed ? "line-through text-slate-400 dark:text-slate-500" : "text-slate-900 dark:text-slate-100"
           }`}
         >
           {title}
         </h2>
 
         <span
-          className={`px-3 py-1 rounded-full text-sm font-semibold ${
+          className={`px-3 py-1 rounded-full text-sm font-semibold capitalize ${
             priority === "high"
-              ? "bg-red-100 text-red-700"
+              ? "bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-300 dark:border dark:border-red-800/50"
               : priority === "medium"
-              ? "bg-yellow-100 text-yellow-700"
-              : "bg-green-100 text-green-700"
+              ? "bg-yellow-100 text-yellow-700 dark:bg-amber-950/60 dark:text-amber-300 dark:border dark:border-amber-800/50"
+              : "bg-green-100 text-green-700 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border dark:border-emerald-800/50"
           }`}
         >
           {priority}
@@ -86,23 +88,23 @@ function TaskItem({ task, onDelete, onEdit, onComplete }) {
 
       {/* Description */}
       {description && (
-        <p className="text-gray-600 mt-3">{description}</p>
+        <p className="text-slate-600 dark:text-slate-300 mt-3">{description}</p>
       )}
 
       {/* Info */}
-      <div className="flex gap-6 mt-4 text-gray-500 text-sm">
+      <div className="flex gap-6 mt-4 text-slate-500 dark:text-slate-400 text-sm">
         {category && <span>📂 {category}</span>}
         {dueDate && <span>📅 {dueDate}</span>}
       </div>
 
       {/* Buttons */}
-      <div className="flex gap-3 mt-6">
+      <div className="flex flex-wrap items-center gap-3 mt-6">
         <button
           onClick={() => onComplete(task.id)}
-          className={`px-4 py-2 rounded-lg text-white font-medium transition ${
+          className={`px-4 py-2 rounded-lg text-white font-medium transition cursor-pointer ${
             completed
-              ? "bg-gray-500 hover:bg-gray-600"
-              : "bg-green-500 hover:bg-green-600"
+              ? "bg-slate-500 hover:bg-slate-600 dark:bg-slate-700 dark:hover:bg-slate-600"
+              : "bg-green-600 hover:bg-green-700 dark:bg-emerald-600 dark:hover:bg-emerald-500"
           }`}
         >
           {completed ? "↩ Undo" : "✓ Complete"}
@@ -110,19 +112,26 @@ function TaskItem({ task, onDelete, onEdit, onComplete }) {
 
         <button
           onClick={() => onEdit(task)}
-          className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition"
+          className="bg-yellow-500 hover:bg-yellow-600 dark:bg-amber-600 dark:hover:bg-amber-500 text-white px-4 py-2 rounded-lg transition cursor-pointer"
         >
           ✏ Edit
         </button>
 
         <button
           onClick={() => onDelete(task.id)}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition"
+          className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-500 text-white px-4 py-2 rounded-lg transition cursor-pointer"
         >
           🗑 Delete
         </button>
+        <Link
+          to={`/task/${task.id}`}
+          className="inline-flex items-center px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium transition-colors border border-slate-200 dark:border-slate-700"
+        >
+          Details
+        </Link>
       </div>
     </Reorder.Item>
+    </>
   );
 }
 

@@ -1,90 +1,63 @@
-import { useState , useRef } from 'react'
-import './App.css'
-import TaskList from './components/TaskList'
-import TaskForm from './components/TaskForm'
-import SearchBar from './components/SearchBar'
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
-
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import TaskDetails from "./pages/TaskDetails";
+import NotFound from "./pages/NotFound";
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
- const [tasks, setTasks] = useState([])
- const[searchQuery , setSearchQuery] = useState("")
- const[editingTask, setEditingTask]= useState(null);
- const form =useRef(null);
- const notify=(massage) => toast.success(massage);
-
-
-  
-  function addTask(task) {
-    console.log("Adding task:", task);
-   
-    const newTask = {
-    id: Date.now(),
-    title: task.title,
-    description: task.description,
-    priority: task.priority,
-    category: task.category,
-    dueDate: task.dueDate,
-    completed:false,
-    };
-  
-      setTasks((prev) => [...prev, newTask]);
-  }
-
-  function deleteTask(id){
-    setTasks(tasks.filter((task)=>task.id !== id)); 
-    notify("Task is deleted");
-
-
-  }
-
-  function editTask(task){
-    setEditingTask(task);
-    form.current?.scrollIntoView({ behavior: "smooth" });
-
-  } 
-
-  function updateTask(updatedTask){
-    setTasks(tasks.map((task)=> task.id == updatedTask.id ? updatedTask : task));
-    setEditingTask(null);
-   
-    
-  }
-
-  function complete(id) {
-  setTasks(
-    tasks.map((task) =>
-      task.id === id
-        ? { ...task, completed: !task.completed }
-        : task
-       
-    )
-  );
-   notify("Task is completed");
-}
-  
   return (
-  
-     <div className="min-h-screen bg-slate-100 p-8">
-        <div className="max-w-4xl mx-auto">
+      <>
+    
+      <nav className="bg-blue-600 dark:bg-slate-900 border-b border-transparent dark:border-slate-800/80 shadow-md transition-colors duration-300">
+  <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+    <h1 className="text-2xl font-bold text-white">
+      <Link to="/" className="hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200">React App</Link>
+    </h1>
 
-        <h1 className="text-4xl font-bold text-center mb-8">
-          To-Do List
-        </h1>
-  
-    <TaskForm onAddTask={addTask}  editingTask={editingTask} onUpdateTask={updateTask} ref={form} notify={notify} />
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-    <TaskList  tasks={tasks} setTasks={setTasks} searchQuery={searchQuery} onDelete={deleteTask} onEdit={editTask} onComplete={complete} />
-     <ToastContainer />
+    <div className="flex items-center gap-6">
+      <Link
+        to="/"
+        className="text-white font-medium hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200"
+      >
+        Home
+      </Link>
+
+      <Link
+        to="/products"
+        className="text-white font-medium hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200"
+      >
+        Products
+      </Link>
+
+      <Link
+        to="/about"
+        className="text-white font-medium hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200"
+      >
+        About
+      </Link>
+
+      <ThemeToggle />
     </div>
-    </div>
-  );
+  </div>
+</nav>
+
+      <Routes>
+
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/task/:id" element={<TaskDetails />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/products" element={<Products/>}/>
+        <Route path="/products/:id" element={<ProductDetails/>} />
+
+      </Routes>
+
+      </>
+  )
 }
-
 export default App;
 
 
