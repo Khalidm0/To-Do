@@ -1,14 +1,13 @@
 import TaskItem from "./TaskItem";
 import { Reorder } from "framer-motion";
+import useTaskStore from "../store/TaskStore";
 
-function TaskList({
-  tasks,
-  setTasks,
-  searchQuery,
-  onDelete,
-  onEdit,
-  onComplete,
-}) {
+function TaskList() {
+  const tasks=useTaskStore((state)=>state.tasks);
+  const setTasks=useTaskStore((state)=>state.setTasks);
+  const searchQuery=useTaskStore((state)=>state.searchQuery);
+
+
   const filteredTasks = tasks.filter((task) =>
     task.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -35,9 +34,7 @@ function TaskList({
             <TaskItem
               key={task.id}
               task={task}
-              onDelete={onDelete}
-              onEdit={onEdit}
-              onComplete={onComplete}
+      
             />
           ))}
         </Reorder.Group>

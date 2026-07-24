@@ -1,11 +1,17 @@
 import React , {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import TextInput from './TextInput';
+import useTaskStore from '../store/TaskStore';
 
-function TaskForm({onAddTask , editingTask, onUpdateTask ,ref , notify }) {
+function TaskForm({ref , notify }) {
+
+    const onAddTask=useTaskStore((state)=>state.addTask); 
+    const onUpdateTask=useTaskStore((state)=>state.updateTask);
+    const editingTask=useTaskStore((state)=>state.editingTask);
 
     const { register, handleSubmit,formState: {errors},reset,setValue} = useForm();
 
+    
         useEffect(()=>{
             if(editingTask){
                 setValue("title",editingTask.title);

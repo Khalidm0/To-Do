@@ -1,7 +1,15 @@
 import { Reorder } from "framer-motion";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import useTaskStore from "../store/TaskStore";
+import { toast } from "react-toastify";
 
-function TaskItem({ task, onDelete, onEdit, onComplete }) {
+function TaskItem({ task}) {
+
+    const onDelete=useTaskStore((state)=>state.deleteTask);
+    const onEdit = useTaskStore((state) => state.setEditingTask);
+    const onComplete=useTaskStore((state)=>state.completeTask);
+    
+
   const {
     title,
     description,
@@ -11,6 +19,9 @@ function TaskItem({ task, onDelete, onEdit, onComplete }) {
     completed,
   } = task;
 
+
+
+
   return (
     <>
     <Reorder.Item
@@ -19,7 +30,6 @@ function TaskItem({ task, onDelete, onEdit, onComplete }) {
     drag="y"
     dragElastic={0.08}
     dragMomentum={false}
-    layout
     layoutScroll
     initial={{
       opacity: 0,
@@ -100,7 +110,7 @@ function TaskItem({ task, onDelete, onEdit, onComplete }) {
       {/* Buttons */}
       <div className="flex flex-wrap items-center gap-3 mt-6">
         <button
-          onClick={() => onComplete(task.id)}
+          onClick={() => {onComplete(task.id); if (completed){ toast.success("Task marked as incomplete");}else{toast.success("Task completed");}}}
           className={`px-4 py-2 rounded-lg text-white font-medium transition cursor-pointer ${
             completed
               ? "bg-slate-500 hover:bg-slate-600 dark:bg-slate-700 dark:hover:bg-slate-600"
@@ -111,14 +121,14 @@ function TaskItem({ task, onDelete, onEdit, onComplete }) {
         </button>
 
         <button
-          onClick={() => onEdit(task)}
+          onClick={() => {onEdit(task);toast.success("task edited successfuly")}}
           className="bg-yellow-500 hover:bg-yellow-600 dark:bg-amber-600 dark:hover:bg-amber-500 text-white px-4 py-2 rounded-lg transition cursor-pointer"
         >
           ✏ Edit
         </button>
 
         <button
-          onClick={() => onDelete(task.id)}
+          onClick={() => {onDelete(task.id); toast.success("Task deleted");}}
           className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-500 text-white px-4 py-2 rounded-lg transition cursor-pointer"
         >
           🗑 Delete
