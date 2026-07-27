@@ -55,7 +55,7 @@ function Home() {
   
  
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_35%),linear-gradient(135deg,_#f8fafc_0%,_#eef2ff_100%)] px-4 py-6 transition-colors duration-300 dark:bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.2),_transparent_35%),linear-gradient(135deg,_#020617_0%,_#0f172a_100%)] sm:px-6 lg:px-8 dark:text-slate-100 text-slate-900">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.16),transparent_35%),linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] px-4 py-6 transition-colors duration-300 dark:bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.2),transparent_35%),linear-gradient(135deg,#020617_0%,#0f172a_100%)] sm:px-6 lg:px-8 dark:text-slate-100 text-slate-900">
       <div className="mx-auto max-w-6xl">
         <div className="mt-8 space-y-6">
           <TaskForm ref={form} notify={notify} />

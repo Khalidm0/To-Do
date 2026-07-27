@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "login": "Login"
+  },
+
+  "login": {
+    "title": "Login",
+    "subtitle": "Access your account",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "Enter your password",
+    "signIn": "Sign in"
+  }
+}

@@ -5,9 +5,22 @@ import TaskDetails from "./pages/TaskDetails";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
+import Login from "./pages/Login";
 import ThemeToggle from "./components/ThemeToggle";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const {t,i18n } = useTranslation();
+  const changeLanguage = () => {
+    const newLanguage = i18n.language === "en" ? "ar" : "en";
+
+    i18n.changeLanguage(newLanguage);
+
+    document.documentElement.dir =
+      newLanguage === "ar" ? "rtl" : "ltr";
+  };
+
   return (
       <>
     
@@ -22,22 +35,34 @@ function App() {
         to="/"
         className="text-white font-medium hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200"
       >
-        Home
+        {t("nav.home")}
       </Link>
 
       <Link
         to="/products"
         className="text-white font-medium hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200"
       >
-        Products
+        {t("nav.products")}
       </Link>
 
       <Link
         to="/about"
         className="text-white font-medium hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200"
       >
-        About
+        {t("nav.about")}
       </Link>
+
+      <Link
+        to="/login"
+        className="text-white font-medium hover:text-blue-200 dark:hover:text-blue-400 transition-colors duration-200"
+      >
+        {t("nav.login")}
+      </Link>
+      <button
+      onClick={changeLanguage}
+      className="text-white font-medium cursor-pointer">
+      {i18n.language === "en" ? "العربية" : "English"}
+     </button>
 
       <ThemeToggle />
     </div>
@@ -48,9 +73,10 @@ function App() {
 
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/task/:id" element={<TaskDetails />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/products" element={<Products/>}/>
+        <Route path="/products" element={<ProtectedRoutes><Products /></ProtectedRoutes>}/>
         <Route path="/products/:id" element={<ProductDetails/>} />
 
       </Routes>
