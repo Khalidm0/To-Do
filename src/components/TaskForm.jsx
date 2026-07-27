@@ -1,9 +1,9 @@
-import React , {useEffect} from 'react';
+import React, { useEffect, forwardRef } from 'react';
 import { useForm } from 'react-hook-form';
 import TextInput from './TextInput';
 import useTaskStore from '../store/TaskStore';
 
-function TaskForm({ref , notify }) {
+const TaskForm = forwardRef(function TaskForm({ notify }, ref) {
 
     const onAddTask=useTaskStore((state)=>state.addTask); 
     const onUpdateTask=useTaskStore((state)=>state.updateTask);
@@ -45,14 +45,23 @@ function TaskForm({ref , notify }) {
    
 
     return (
-       <>
-      
-        <div ref={ref} className="bg-white dark:bg-slate-800 border border-transparent dark:border-slate-700/80 rounded-xl shadow-md p-6 mb-8 transition-colors duration-300">
-  <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-    {editingTask ? "Edit Task" : "Add New Task"}
-  </h2>
+      <div ref={ref} className="rounded-2xl border border-slate-200/70 bg-white p-6 shadow-sm transition-colors duration-300 dark:border-slate-700/70 dark:bg-slate-800/90">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+              {editingTask ? "Edit task" : "Add a new task"}
+            </h2>
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+              Capture the details, set a due date, and keep your plan moving.
+            </p>
+          </div>
 
-  <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <div className="rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-blue-950/50 dark:text-blue-300">
+            {editingTask ? "Updating" : "New task"}
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-5">
 
         <TextInput
           label="Title"
@@ -134,18 +143,12 @@ function TaskForm({ref , notify }) {
       )}
     </div>
 
-    <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white font-semibold py-3 rounded-lg transition-colors shadow-sm cursor-pointer">
-      {editingTask ? "Update Task" :"Add Task"}
-      
+    <button type="submit" className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 font-semibold text-white shadow-sm transition hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-400 dark:hover:to-indigo-400">
+      {editingTask ? "Update Task" : "Add Task"}
     </button>
-    
-
-
-       
         </form>
-        </div>
-        </>
+      </div>
     );
-}
+});
 
 export default TaskForm;

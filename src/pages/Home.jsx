@@ -16,9 +16,7 @@ function Home() {
  const notify=(message) => toast.success(message);
 
  const setTasks = useTaskStore((state) => state.setTasks);
-  const editingTask = useTaskStore((state) => state.editingTask);
-
-
+ const editingTask = useTaskStore((state) => state.editingTask);
 
  useEffect(()=>{
     async function fetchTasks(){
@@ -57,16 +55,16 @@ function Home() {
   
  
   return (
-  
-     <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-8 transition-colors duration-300">
-        <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_35%),linear-gradient(135deg,_#f8fafc_0%,_#eef2ff_100%)] px-4 py-6 transition-colors duration-300 dark:bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.2),_transparent_35%),linear-gradient(135deg,_#020617_0%,_#0f172a_100%)] sm:px-6 lg:px-8 dark:text-slate-100 text-slate-900">
+      <div className="mx-auto max-w-6xl">
+        <div className="mt-8 space-y-6">
+          <TaskForm ref={form} notify={notify} />
+          <SearchBar />
+          <TaskList />
+        </div>
 
-  
-    <TaskForm ref={form} notify={notify} />
-    <SearchBar />
-    <TaskList />
-     <ToastContainer theme={darkMode ? "dark" : "light"} />
-    </div>
+        <ToastContainer theme={darkMode ? "dark" : "light"} />
+      </div>
     </div>
   );
 }

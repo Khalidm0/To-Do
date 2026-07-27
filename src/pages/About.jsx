@@ -1,72 +1,53 @@
 function About() {
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 py-10 px-6 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto bg-white dark:bg-slate-900 border border-transparent dark:border-slate-800 rounded-xl shadow-lg p-8">
-        <h1 className="text-4xl font-bold text-center text-blue-600 dark:text-blue-400 mb-6">
-          About This Project
-        </h1>
-
-        <p className="text-slate-700 dark:text-slate-300 text-lg leading-8 text-center">
-          This project is a React-based Task and Product Management application.
-          It demonstrates React fundamentals including routing, reusable
-          components, state management, API integration, dark mode styling, and dynamic routing
-          using React Router.
-        </p>
-
-        <div className="mt-10">
-          <h2 className="text-2xl font-semibold mb-4 text-slate-900 dark:text-slate-100">
-            🚀 Features
-          </h2>
-
-          <ul className="space-y-3 text-slate-700 dark:text-slate-300">
-            <li>✅ Create, edit, delete, and complete tasks</li>
-            <li>✅ Search tasks instantly</li>
-            <li>✅ Dynamic task details page</li>
-            <li>✅ Browse products from the DummyJSON API</li>
-            <li>✅ Dynamic product details page</li>
-            <li>✅ Responsive design with Tailwind CSS</li>
-            <li>✅ Persistent Dark Mode support</li>
-            <li>✅ Toast notifications</li>
-            <li>✅ API requests using Axios</li>
-        </ul>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_30%),linear-gradient(135deg,_#f8fafc_0%,_#eef2ff_100%)] px-4 py-10 text-slate-900 transition-colors duration-300 dark:bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.2),_transparent_30%),linear-gradient(135deg,_#020617_0%,_#0f172a_100%)] dark:text-slate-100 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl rounded-3xl border border-slate-200/70 bg-white/80 p-8 shadow-xl shadow-slate-200/60 backdrop-blur dark:border-slate-700/70 dark:bg-slate-900/80 dark:shadow-slate-950/30 sm:p-10 lg:p-12">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600 dark:text-blue-400">
+            About this app
+          </p>
+          <h1 className="mt-3 text-4xl font-semibold sm:text-5xl">
+            A clean way to manage tasks.
+          </h1>
+          <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">
+            This project brings together task organization, product browsing, and modern React patterns in one simple experience. It highlights reusable components, route-based navigation, API integration, and a polished dark mode interface.
+          </p>
         </div>
 
-        <div className="mt-10">
-          <h2 className="text-2xl font-semibold mb-4 text-slate-900 dark:text-slate-100">
-            🛠 Technologies Used
-          </h2>
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800/70">
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
+              ✨ What it offers
+            </h2>
+            <ul className="mt-4 space-y-3 text-slate-700 dark:text-slate-300">
+              <li>• Create, edit, delete, and complete tasks</li>
+              <li>• Search tasks instantly with a focused UI</li>
+              <li>• Open detailed task and product pages dynamically</li>
+              <li>• Enjoy responsive layouts and persistent dark mode</li>
+              <li>• Receive helpful toast feedback while interacting</li>
+            </ul>
+          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div className="bg-slate-100 dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg p-4 text-center font-medium">
-              React
-            </div>
-
-            <div className="bg-slate-100 dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg p-4 text-center font-medium">
-              React Router
-            </div>
-
-            <div className="bg-slate-100 dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg p-4 text-center font-medium">
-              Axios
-            </div>
-
-            <div className="bg-slate-100 dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg p-4 text-center font-medium">
-              Tailwind CSS
-            </div>
-
-            <div className="bg-slate-100 dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg p-4 text-center font-medium">
-              React Hook Form
-            </div>
-
-            <div className="bg-slate-100 dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg p-4 text-center font-medium">
-              DummyJSON API
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800/70">
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
+              🛠 Built with
+            </h2>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {['React', 'React Router', 'Axios', 'Tailwind CSS', 'React Hook Form', 'DummyJSON API'].map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200"
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-slate-200 dark:border-slate-800 pt-6 text-center text-slate-600 dark:text-slate-400">
-          <p>
-            Built to practice modern React development, component-based
-            architecture, routing, and REST API integration.
+        <div className="mt-10 rounded-2xl border border-blue-200 bg-blue-50/70 p-6 text-slate-700 dark:border-blue-900/50 dark:bg-blue-950/30 dark:text-slate-300">
+          <p className="text-lg leading-8">
+            Built as a practical learning project for modern React development, clean component structure, routing, and REST API integration.
           </p>
         </div>
       </div>
