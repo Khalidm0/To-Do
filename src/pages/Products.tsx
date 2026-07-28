@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../api/productApi";
+import { useTranslation } from "react-i18next";
 
 function Products() {
+  const { t } = useTranslation();
     const [products, setProducts] = useState<any[]>([]);
 
     useEffect(() => {
@@ -19,7 +21,7 @@ function Products() {
     return (
         <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-8 transition-colors duration-300">
             <div className="max-w-6xl mx-auto">
-                <h1 className="text-4xl font-bold mb-8 text-slate-900 dark:text-slate-100">Products</h1>
+                <h1 className="text-4xl font-bold mb-8 text-slate-900 dark:text-slate-100"><h1>{t("products.title")}</h1></h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {products.map((product) => (

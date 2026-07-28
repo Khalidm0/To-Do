@@ -14,5 +14,80 @@
     "emailPlaceholder": "you@example.com",
     "passwordPlaceholder": "Enter your password",
     "signIn": "Sign in"
-  }
+  },
+
+  "about": {
+    "badge": "About this app",
+    "title": "A clean way to manage tasks.",
+    "description": "This project brings together task organization, product browsing, and modern React patterns in one simple experience. It highlights reusable components, route-based navigation, API integration, and a polished dark mode interface.",
+    "featuresTitle": "What it offers",
+    "feature1": "Create, edit, delete, and complete tasks",
+    "feature2": "Search tasks instantly with a focused UI",
+    "feature3": "Open detailed task and product pages dynamically",
+    "feature4": "Enjoy responsive layouts and persistent dark mode",
+    "feature5": "Receive helpful toast feedback while interacting",
+    "builtWith": "Built with",
+    "footer": "Built as a practical learning project for modern React development, clean component structure, routing, and REST API integration."
+  },
+
+  "products": {
+    "title": "Products",
+    "loading": "Loading product details..."
+  },
+
+  "task": {
+    "title": "Task Details",
+    "loading": "Loading task details...",
+    "id": "ID",
+    "task": "Task",
+    "status": "Status",
+    "completed": "Completed",
+    "notCompleted": "Not Completed",
+    "userId": "User ID"
+  },
+
+  "notFound": {
+    "title": "Page Not Found",
+    "back": "Return to Home"
+  },
+  
+  "taskForm": {
+  "addTitle": "Add a new task",
+  "editTitle": "Edit task",
+  "subtitle": "Capture the details, set a due date, and keep your plan moving.",
+  "newTask": "New task",
+  "updating": "Updating",
+
+  "title": "Title",
+  "titlePlaceholder": "Enter task title",
+  "titleRequired": "Title is required",
+  "titleMax": "Title cannot exceed 100 characters",
+
+  "description": "Description",
+  "descriptionPlaceholder": "Write a clear description",
+  "descriptionMax": "Description cannot exceed 500 characters",
+
+  "dueDate": "Due Date",
+
+  "priority": "Priority",
+  "priorityRequired": "Priority is required",
+  "selectPriority": "Select priority",
+  "low": "Low",
+  "medium": "Medium",
+  "high": "High",
+
+  "category": "Category",
+  "selectCategory": "Select category",
+  "study": "Study",
+  "work": "Work",
+  "others": "Others",
+  "newCategory": "Or create new category",
+  "categoryMax": "Category cannot exceed 50 characters",
+
+  "addButton": "Add Task",
+  "updateButton": "Update Task",
+
+  "added": "Task added successfully",
+  "updated": "Task updated successfully"
+}
 }

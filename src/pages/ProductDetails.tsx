@@ -1,8 +1,10 @@
 import {getProductById} from "../api/productApi";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function ProductDetails() {
+  const { t } = useTranslation();
     const {id} = useParams();
     const [product, setProduct] = useState<any>(null);
     useEffect(() =>{
@@ -25,7 +27,7 @@ function ProductDetails() {
     if (!product) {
   return (
     <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex items-center justify-center p-8 transition-colors duration-300">
-      <h2 className="text-xl font-medium animate-pulse">Loading product details...</h2>
+      <h2 className="text-xl font-medium animate-pulse">{t("products.loading")}</h2>
     </div>
   );
 }

@@ -2,8 +2,12 @@ import React, { useEffect, forwardRef } from 'react';
 import { useForm } from 'react-hook-form';
 import TextInput from './TextInput';
 import useTaskStore from '../store/TaskStore';
+import { useTranslation } from "react-i18next";
+
 
 const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
+    const {t} = useTranslation();
+
 
     const onAddTask=useTaskStore((state)=>state.addTask); 
     const onUpdateTask=useTaskStore((state)=>state.updateTask);
@@ -33,11 +37,11 @@ const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
 
       if (editingTask) {
           onUpdateTask({...data, id: editingTask.id,});
-          notify("Task is updated");
+          notify(t("taskForm.updated"));
       }
       else{
         onAddTask(data);
-        notify("Task is added ");
+        notify(t("taskForm.added"));
       }
         reset();
     }
@@ -49,41 +53,41 @@ const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-              {editingTask ? "Edit task" : "Add a new task"}
+              {editingTask ? t("taskForm.editTitle") : t("taskForm.addTitle")}
             </h2>
             <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-              Capture the details, set a due date, and keep your plan moving.
+              {t("taskForm.subtitle")}
             </p>
           </div>
 
           <div className="rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-blue-950/50 dark:text-blue-300">
-            {editingTask ? "Updating" : "New task"}
+            {editingTask ?  t("taskForm.updating") :  t("taskForm.newTask")}
           </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-5">
 
         <TextInput
-          label="Title"
+          label={t("taskForm.title")}
           name="title"
-          placeholder="Enter task title"
+          placeholder={t("taskForm.titlePlaceholder")}
           register={register}
           validation={{
-            required: "Title is required",
-            maxLength: { value: 100, message: "Title cannot exceed 100 characters" },
+            required:  t("taskForm.titleRequired"),
+            maxLength: { value: 100, message: t("taskForm.titleMax") },
           }}
            error={errors.title}
         />
  
           <TextInput 
-          label="description"
+          label={t("taskForm.description")}
           name="description"
-          placeholder="write a clear description"
+          placeholder={t("taskForm.descriptionPlaceholder")}
           register={register}
           validation={{
           maxLength:{
             value:500,
-            message:"description cano=not exceed 500 char",
+            message:t("taskForm.descriptionMax"),
           },
         }}
           error={errors.description}
@@ -93,7 +97,7 @@ const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
      
 
       <div>
-      <label className="block mb-2 font-medium text-slate-800 dark:text-slate-200">Due Date</label>
+      <label className="block mb-2 font-medium text-slate-800 dark:text-slate-200">{t("taskForm.dueDate")}</label>
         <input type="date"
         min={new Date().toISOString().split("T")[0]}
          className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
@@ -101,15 +105,15 @@ const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
         </div>
         
        <div>
-        <label className="block mb-2 font-medium text-slate-800 dark:text-slate-200">Priority</label>
+        <label className="block mb-2 font-medium text-slate-800 dark:text-slate-200">{t("taskForm.priority")}</label>
         <select className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
          {...register("priority", {
-        required: "priority is requierd "
+        required: t("taskForm.priorityRequired")
         })}>
-            <option value="" className="dark:bg-slate-900">Select priority</option>
-            <option value="low" className="dark:bg-slate-900">Low</option>
-            <option value="medium" className="dark:bg-slate-900">Medium</option>
-            <option value="high" className="dark:bg-slate-900">High</option>
+            <option value="" className="dark:bg-slate-900">{t("taskForm.selectPriority")}</option>
+            <option value="low" className="dark:bg-slate-900">{t("taskForm.low")}</option>
+            <option value="medium" className="dark:bg-slate-900">{t("taskForm.medium")}</option>
+            <option value="high" className="dark:bg-slate-900">{t("taskForm.high")}</option>
         </select>
 
        {errors.priority && (
@@ -120,7 +124,7 @@ const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
     </div>
 
     <div>
-         <label className="block mb-2 font-medium text-slate-800 dark:text-slate-200">Category</label>
+         <label className="block mb-2 font-medium text-slate-800 dark:text-slate-200">{t("taskForm.category")}</label>
          <select 
           className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-lg px-4 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
           {...register("category")}>
