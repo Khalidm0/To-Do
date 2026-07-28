@@ -12,8 +12,8 @@ import useTaskStore from '../store/TaskStore';
 
 function Home() {
  const { darkMode } = useTheme();
- const form =useRef(null);
- const notify=(message) => toast.success(message);
+ const form =useRef<HTMLDivElement | null>(null);
+ const notify=(message: string) => toast.success(message);
 
  const setTasks = useTaskStore((state) => state.setTasks);
  const editingTask = useTaskStore((state) => state.editingTask);
@@ -23,7 +23,7 @@ function Home() {
         try {
         const data = await getTasks();
 
-        const formattedTasks = data.map((task) => ({
+        const formattedTasks = data.map((task: any) => ({
         id: task.id,
         title: task.todo,
         description: "",
@@ -45,15 +45,12 @@ function Home() {
 
   useEffect(() => {
     if (editingTask) {
-      form.current?.scrollIntoView({
+      (form.current as any)?.scrollIntoView({
         behavior: "smooth",
       });
     }
   }, [editingTask]);
 
-
-  
- 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.16),transparent_35%),linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] px-4 py-6 transition-colors duration-300 dark:bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.2),transparent_35%),linear-gradient(135deg,#020617_0%,#0f172a_100%)] sm:px-6 lg:px-8 dark:text-slate-100 text-slate-900">
       <div className="mx-auto max-w-6xl">
@@ -70,5 +67,3 @@ function Home() {
 }
 
 export default Home;
-
-

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import useTaskStore from "../store/TaskStore";
 import { toast } from "react-toastify";
 
-function TaskItem({ task}) {
+function TaskItem({ task}: any) {
 
     const onDelete=useTaskStore((state)=>state.deleteTask);
     const onEdit = useTaskStore((state) => state.setEditingTask);
@@ -71,8 +71,7 @@ function TaskItem({ task}) {
       completed
         ? "bg-green-50/80 border-green-300 dark:bg-emerald-950/40 dark:border-emerald-800/60 opacity-80"
         : "bg-white border-slate-200 dark:bg-slate-900 dark:border-slate-800 hover:shadow-lg dark:hover:border-slate-700"
-    }`}
-    >
+    }`}>
       {/* Header */}
       <div className="flex justify-between items-center">
         <h2

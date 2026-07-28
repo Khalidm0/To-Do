@@ -7,11 +7,11 @@ function TaskList() {
   const setTasks=useTaskStore((state)=>state.setTasks);
   const searchQuery=useTaskStore((state)=>state.searchQuery);
 
-  const filteredTasks = tasks.filter((task) =>
+  const filteredTasks = tasks.filter((task: any) =>
     task.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const completedTasks = tasks.filter((task) => task.completed).length;
+  const completedTasks = tasks.filter((task: any) => task.completed).length;
   const pendingTasks = tasks.length - completedTasks;
 
   return (
@@ -48,10 +48,10 @@ function TaskList() {
         <Reorder.Group
           axis="y"
           values={filteredTasks}
-          onReorder={(nextTasks) => setTasks(nextTasks)}
+          onReorder={(nextTasks:any) => setTasks(nextTasks)}
           className="mt-6 flex flex-col gap-5"
         >
-          {filteredTasks.map((task) => (
+          {filteredTasks.map((task: any) => (
             <TaskItem
               key={task.id}
               task={task}

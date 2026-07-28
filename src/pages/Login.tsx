@@ -11,7 +11,7 @@ function Login() {
 
   const login = useAuthStore((state)=>state.login)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     login();
     navigate('/');

@@ -11,7 +11,7 @@ export const getProducts = async () => {
     throw error;
   }};
 
-  export const getProductById = async (id) => {
+  export const getProductById = async (id: any) => {
   const response = await axios.get(`${API_BASE_URL}/products/${id}`);
   return response.data;
 };

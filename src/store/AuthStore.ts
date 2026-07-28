@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const useAuthStore = create((set) => ({
+const useAuthStore = create((set:any) => ({
   isLoggedIn: false,
   login:()=> set ({isLoggedIn:true}),
   logout:()=> set({isLoggedIn:false}),

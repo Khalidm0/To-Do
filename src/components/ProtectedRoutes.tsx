@@ -1,7 +1,7 @@
 import useAuthStore from "../store/AuthStore";
 import NotFound from "../pages/NotFound";
 
-function ProtectedRoutes({children }){
+function ProtectedRoutes({children }: any){
     const isLoggedIn = useAuthStore((state)=> state.isLoggedIn);
 
     if(!isLoggedIn){

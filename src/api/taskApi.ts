@@ -12,7 +12,7 @@ export const getTasks = async () => {
   }
 };
 
-export const getTaskById = async (id) => {
+export const getTaskById = async (id: any) => {
   const response = await axios.get(`${BASE_URL}/todos/${id}`);
   return response.data;
 };

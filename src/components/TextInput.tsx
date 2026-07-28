@@ -1,4 +1,4 @@
-function TaskInput({label,name,type="text",placeholder,register,error,validation}) {
+function TaskInput({label,name,type="text",placeholder,register,error,validation}: any) {
     return (
         <div>
 

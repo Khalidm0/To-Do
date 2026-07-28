@@ -5,7 +5,7 @@ import { getTaskById } from "../api/taskApi";
 
 function TaskDetails() {
   const { id } = useParams();
-  const [task, setTask] = useState(null);
+  const [task, setTask] = useState<any>(null);
 
   useEffect(() => {
     async function fetchTask() {

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import TextInput from './TextInput';
 import useTaskStore from '../store/TaskStore';
 
-const TaskForm = forwardRef(function TaskForm({ notify }, ref) {
+const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
 
     const onAddTask=useTaskStore((state)=>state.addTask); 
     const onUpdateTask=useTaskStore((state)=>state.updateTask);
@@ -24,7 +24,7 @@ const TaskForm = forwardRef(function TaskForm({ notify }, ref) {
 
         
 
-    const onSubmit = (data)=>{
+    const onSubmit = (data:any)=>{
 
       if(data.newCategory.trim() !== ""){
         data.category = data.newCategory;
