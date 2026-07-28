@@ -114,7 +114,7 @@ const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
 
        {errors.priority && (
         <p className="text-red-500 text-sm mt-1">
-          {errors.priority.message}
+          {(errors.priority as any)?.message}
         </p>
       )}
     </div>
@@ -138,7 +138,7 @@ const TaskForm = forwardRef(function TaskForm({ notify }: any, ref: any) {
          />
           {errors.newCategory && (
         <p className="text-red-500 text-sm mt-1">
-          {errors.newCategory.message}
+          {(errors.newCategory as any)?.message}
         </p>
       )}
     </div>
